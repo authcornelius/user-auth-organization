@@ -1,9 +1,9 @@
 {
   "name": "user-auth-organization",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon app.js",
     "test": "jest"
   },
   "keywords": [],
