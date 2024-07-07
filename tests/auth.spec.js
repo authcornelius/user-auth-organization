@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server'); // Adjust path as necessary
+const app = require('../app'); // Adjust path as necessary
 const { register } = require('../routes/auth');
 
 describe('Auth API', () => {
