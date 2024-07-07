@@ -3,7 +3,6 @@ const app = require('../app'); // Adjust path as necessary
 const { register } = require('../routes/auth');
 
 describe('Auth API', () => {
-  describe('POST /register', () => {
     it('should register a user successfully with default organisation', async () => {
       const userData = {
         firstName: 'John',
@@ -21,7 +20,6 @@ describe('Auth API', () => {
       expect(res.body.data.user.firstName).toEqual('John');
       expect(res.body.data.user.lastName).toEqual('Doe');
     });
-  });
 
   it('should log in a user successfully', async () => {
     const res = await request(app)

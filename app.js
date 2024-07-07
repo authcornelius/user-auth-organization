@@ -4,9 +4,10 @@ const authRoutes = require('./routes/auth'); // Adjust path if necessary
 
 const app = express();
 
+// Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Mount routes
+// Mount auth routes
 app.use('/api/auth', authRoutes);
 
 // 404 handler
@@ -15,4 +16,3 @@ app.use((req, res, next) => {
 });
 
 module.exports = app;
-
