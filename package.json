@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "jest"
   },
   "keywords": [],
