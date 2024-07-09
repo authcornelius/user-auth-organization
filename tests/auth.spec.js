@@ -12,7 +12,7 @@ describe('Auth API', () => {
       };
 
       const res = await request(app) // Use app here instead of register
-        .post('/auth/register')
+        .post('/api/auth/register')
         .send(userData);
 
       expect(res.statusCode).toEqual(201);
@@ -23,7 +23,7 @@ describe('Auth API', () => {
 
   it('should log in a user successfully', async () => {
     const res = await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: "john@example.com",
         password: "password123"
@@ -37,7 +37,7 @@ describe('Auth API', () => {
 
   it('should fail if required fields are missing during registration', async () => {
     const res = await request(app)
-      .post('/auth/register')
+      .post('/api/auth/register')
       .send({
         email: "jane@example.com"
       });
@@ -48,7 +48,7 @@ describe('Auth API', () => {
 
   it('should fail if there is a duplicate email during registration', async () => {
     await request(app)
-      .post('/auth/register')
+      .post('/api/auth/register')
       .send({
         firstName: "Jane",
         lastName: "Doe",
@@ -57,7 +57,7 @@ describe('Auth API', () => {
       });
 
     const res = await request(app)
-      .post('/auth/register')
+      .post('/api/auth/register')
       .send({
         firstName: "Jane",
         lastName: "Doe",
