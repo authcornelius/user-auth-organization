@@ -57,8 +57,6 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { register };
-
 
 const login = async (req, res) => {
   try {
@@ -66,21 +64,53 @@ const login = async (req, res) => {
     
     // Validation: Check if email and password are provided
     if (!email || !password) {
-      return res.status(400).json({ error: 'Email and password are required' });
+      return res.status(400).json({
+        status: 'fail',
+        statusCode: 400,
+        message: 'Email and password are required',
+        error: 'Missing email or password'
+      });
     }
 
     // Simulate user login with hardcoded credentials
     if (email !== 'john@example.com' || password !== 'password123') {
-      return res.status(400).json({ error: 'Invalid email or password' });
+      return res.status(400).json({
+        status: 'fail',
+        statusCode: 400,
+        message: 'Invalid email or password',
+        error: 'Incorrect email or password'
+      });
     }
 
     // Construct user object for successful login
     const user = { firstName: 'John', lastName: 'Doe', email };
-    res.status(200).json({ data: { user } });
+
+    // Generate token
+    const token = jwt.sign(
+      { email: user.email, firstName: user.firstName, lastName: user.lastName },
+      process.env.JWT_SECRET, // Ensure this is properly set
+      { expiresIn: '1h' }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      statusCode: 200,
+      message: 'Login successful',
+      data: {
+        accessToken: token, 
+        user },
+      
+    });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({
+      status: 'error',
+      statusCode: 500,
+      message: 'Internal server error',
+      error: error.message
+    });
   }
 };
+
 
 module.exports = { register, login };
