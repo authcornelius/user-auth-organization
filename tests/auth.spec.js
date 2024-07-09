@@ -39,7 +39,7 @@ describe('Auth API', () => {
     const res = await request(app)
       .post('/auth/register')
       .send({
-        email: 'jane@example.com'
+        email: "jane@example.com"
       });
 
     expect(res.statusCode).toEqual(400);
