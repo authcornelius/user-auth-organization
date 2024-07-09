@@ -5,10 +5,10 @@ const { register } = require('../routes/auth');
 describe('Auth API', () => {
     it('should register a user successfully with default organisation', async () => {
       const userData = {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@example.com',
-        phone: '1234567890'
+        firstName: "John",
+        lastName: "Doe",
+        email: "johndoe@example.com",
+        phone: "1234567890"
       };
 
       const res = await request(app) // Use app here instead of register
@@ -25,8 +25,8 @@ describe('Auth API', () => {
     const res = await request(app)
       .post('/auth/login')
       .send({
-        email: 'john@example.com',
-        password: 'password123'
+        email: "john@example.com",
+        password: "password123"
       });
 
     expect(res.statusCode).toEqual(200);
@@ -50,19 +50,19 @@ describe('Auth API', () => {
     await request(app)
       .post('/auth/register')
       .send({
-        firstName: 'Jane',
-        lastName: 'Doe',
-        email: 'jane@example.com',
-        phone: '9876543210'
+        firstName: "Jane",
+        lastName: "Doe",
+        email: "jane@example.com",
+        phone: "9876543210"
       });
 
     const res = await request(app)
       .post('/auth/register')
       .send({
-        firstName: 'Jane',
-        lastName: 'Doe',
-        email: 'jane@example.com',
-        phone: '9876543210'
+        firstName: "Jane",
+        lastName: "Doe",
+        email: "jane@example.com",
+        phone: "9876543210"
       });
 
     expect(res.statusCode).toEqual(400);
