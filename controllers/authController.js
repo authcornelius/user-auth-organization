@@ -1,29 +1,51 @@
-const existingEmails = ['john@example.com']; // Mocked existing emails
+const existingEmails = []; // Simulate an existing email list for demonstration
 
 const register = async (req, res) => {
   try {
     const { firstName, lastName, email, phone } = req.body;
 
     // Validation: Check if all fields are provided
-    // if (!firstName || !lastName || !email || !phone) {
-    //   return res.status(400).json({ error: 'All fields are required' });
-    // }
+    if (!firstName || !lastName || !email || !phone) {
+      return res.status(400).json({
+        status: 'fail',
+        statusCode: 400,
+        message: 'All fields are required',
+        error: 'Missing required fields'
+      });
+    }
 
     // Validation: Check for duplicate email
     if (existingEmails.includes(email)) {
-      return res.status(400).json({ error: 'Email already exists' });
+      return res.status(400).json({
+        status: 'fail',
+        statusCode: 400,
+        message: 'User with email already exists',
+        error: 'Duplicate email'
+      });
     }
 
     // Simulate adding email to existing emails list
     existingEmails.push(email);
 
     const user = { firstName, lastName, email, phone };
-    return res.status(201).json({ data: { user } });
+    return res.status(201).json({
+      status: 'success',
+        statusCode: 201,
+        message: 'User registered successfully',
+        data: { user }
+    });
   } catch (error) {
     console.error('Registration error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({
+      status: 'error',
+      statusCode: 500,
+      message: 'Internal server error',
+      error: error.message
+    });
   }
 };
+
+module.exports = { register };
 
 
 const login = async (req, res) => {
