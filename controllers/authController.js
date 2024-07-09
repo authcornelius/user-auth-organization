@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const existingEmails = []; // Simulate an existing email list for demonstration
 
@@ -35,15 +36,15 @@ const register = async (req, res) => {
     const token = jwt.sign(
       { email: user.email, firstName: user.firstName, lastName: user.lastName },
       process.env.JWT_SECRET, // Use a secure secret key
-      { expiresIn: '1h' }
+      
     );
 
     return res.status(201).json({
       status: 'success',
       statusCode: 201,
       message: 'User registered successfully',
-      data: { user },
-      token: token
+      data: { accessToken: token, user },
+      
     });
   } catch (error) {
     console.error('Registration error:', error);
