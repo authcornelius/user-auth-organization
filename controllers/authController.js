@@ -5,9 +5,9 @@ const register = async (req, res) => {
     const { firstName, lastName, email, phone } = req.body;
 
     // Validation: Check if all fields are provided
-    if (!firstName || !lastName || !email || !phone) {
-      return res.status(400).json({ error: 'All fields are required' });
-    }
+    // if (!firstName || !lastName || !email || !phone) {
+    //   return res.status(400).json({ error: 'All fields are required' });
+    // }
 
     // Validation: Check for duplicate email
     if (existingEmails.includes(email)) {
