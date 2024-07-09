@@ -8,14 +8,14 @@ const register = async (req, res) => {
     const { firstName, lastName, email, phone } = req.body;
 
     // Validation: Check if all fields are provided
-    if (!firstName || !lastName || !email) {
-      return res.status(400).json({
-        status: 'fail',
-        statusCode: 400,
-        message: 'All fields are required',
-        error: 'Missing required fields'
-      });
-    }
+    // if (!firstName || !lastName || !email) {
+    //   return res.status(400).json({
+    //     status: 'fail',
+    //     statusCode: 400,
+    //     message: 'All fields are required',
+    //     error: 'Missing required fields'
+    //   });
+    // }
 
     // Validation: Check for duplicate email
     if (existingEmails.includes(email)) {
