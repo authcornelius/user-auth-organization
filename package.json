@@ -2,11 +2,8 @@
   "name": "user-auth-organization",
   "version": "1.0.0",
   "main": "app.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "jest"
   },
   "keywords": [],
